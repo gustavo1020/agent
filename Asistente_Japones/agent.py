@@ -1,5 +1,7 @@
 from google.adk.agents import Agent
 import random
+import json
+import os
 from typing import Dict, List, Optional
 import psycopg2
 import psycopg2.extras
@@ -73,13 +75,40 @@ HIRAGANA_DICT = {
 # Diccionario inverso para buscar hiragana por romanización
 ROMAJI_TO_HIRAGANA = {v: k for k, v in HIRAGANA_DICT.items()}
 
+# Cargar kanji N5 desde el archivo JSON
+KANJI_N5_DICT = {}
+try:
+    # Intentar cargar desde la ruta del módulo
+    current_dir = os.path.dirname(__file__)
+    kanji_file_path = os.path.join(current_dir, 'kanji-n5.json')
+    
+    if os.path.exists(kanji_file_path):
+        with open(kanji_file_path, 'r', encoding='utf-8') as f:
+            KANJI_N5_DICT = json.load(f)
+    else:
+        # Ruta alternativa desde el directorio raíz
+        alt_path = '/app/Asistente_Japones/kanji-n5.json'
+        if os.path.exists(alt_path):
+            with open(alt_path, 'r', encoding='utf-8') as f:
+                KANJI_N5_DICT = json.load(f)
+        else:
+            print("⚠️ Archivo kanji-n5.json no encontrado. Funcionalidad de kanji deshabilitada.")
+except Exception as e:
+    print(f"⚠️ Error cargando kanji-n5.json: {e}")
+    KANJI_N5_DICT = {}
+
+# Lista de kanji disponibles para facilitar selección aleatoria
+KANJI_LIST = list(KANJI_N5_DICT.keys()) if KANJI_N5_DICT else []
+
 # Variables globales para el estado del juego
 game_state = {
     'current_question': None,
     'score': 0,
     'total_questions': 0,
-    'current_mode': None,
-    'difficulty_level': 'basico'
+    'current_mode': None,  # 'hiragana' o 'kanji'
+    'difficulty_level': 'basico',
+    'kanji_score': 0,
+    'kanji_total': 0
 }
 
 # Niveles de dificultad expandidos desde config
@@ -95,7 +124,7 @@ DIFFICULTY_LEVELS = {
 
 def start_hiragana_game() -> dict:
     """
-    Inicia el juego de hiragana mostrando las opciones disponibles.
+    Inicia el sistema de aprendizaje japonés mostrando todas las opciones disponibles.
     """
     global game_state
     game_state = {
@@ -103,33 +132,44 @@ def start_hiragana_game() -> dict:
         'score': 0,
         'total_questions': 0,
         'current_mode': None,
-        'difficulty_level': 'basico'
+        'difficulty_level': 'basico',
+        'kanji_score': 0,
+        'kanji_total': 0
     }
+    
+    kanji_status = f"📚 **Kanji N5**: {len(KANJI_LIST)} disponibles" if KANJI_LIST else "⚠️ **Kanji**: No disponible"
     
     return {
         "status": "success",
-        "message": "🎮 ¡Bienvenido al Juego Interactivo de Hiragana! 🎌\n\n"
-                  "**Modos de Juego Disponibles:**\n"
+        "message": "🎮 ¡Bienvenido al Sistema de Aprendizaje Japonés! 🎌\n\n"
+                  "**📝 HIRAGANA - Modos Disponibles:**\n"
                   "1️⃣ **Pregunta Abierta - Hiragana**: Te muestro un hiragana, escribes el romaji\n"
                   "2️⃣ **Pregunta Abierta - Romaji**: Te doy el romaji, escribes el hiragana\n"
-                  "3️⃣ **🆕 Múltiple Choice - Hiragana**: Hiragana con 4 opciones de romaji\n"
-                  "4️⃣ **🆕 Múltiple Choice - Romaji**: Romaji con 4 opciones de hiragana\n\n"
+                  "3️⃣ **Múltiple Choice - Hiragana**: Hiragana con 4 opciones de romaji\n"
+                  "4️⃣ **Múltiple Choice - Romaji**: Romaji con 4 opciones de hiragana\n\n"
+                  
+                  "**🎴 KANJI N5 - Nuevas Funcionalidades:**\n"
+                  "5️⃣ **🆕 Tarjetas de Estudio**: Información completa de kanji aleatorios\n"
+                  "6️⃣ **🆕 Kanji → Significado**: Múltiple choice con auto-avance\n"
+                  "7️⃣ **🆕 Significado → Kanji**: Múltiple choice con auto-avance\n"
+                  "8️⃣ **🆕 Kanji → Lectura**: Múltiple choice kunyomi/onyomi con auto-avance\n\n"
+                  
+                  f"**📊 Estado Actual:**\n"
+                  f"🔤 **Hiragana**: 46 caracteres disponibles\n"
+                  f"{kanji_status}\n\n"
                   
                   "**✨ Características Especiales:**\n"
-                  "🚀 **Auto-Avance (Múltiple Choice)**: Después de responder, automáticamente genera la siguiente pregunta\n"
-                  "🎯 **Respuesta Inteligente**: Responde con texto o números, el sistema detecta automáticamente\n"
-                  "📊 **Progreso en Tiempo Real**: Estadísticas actualizadas después de cada respuesta\n\n"
+                  "� **Auto-Avance (Múltiple Choice)**: Pregunta siguiente automática tras responder\n"
+                  "🎯 **Respuesta Inteligente**: El sistema detecta automáticamente qué tipo de respuesta das\n"
+                  "� **Estadísticas Separadas**: Progreso independiente para hiragana y kanji\n"
+                  "� **Información Completa**: Cada kanji muestra significado, kunyomi, onyomi y romaji\n\n"
                   
-                  "**Herramientas Disponibles:**\n"
-                  "⚙️ **Dificultad**: 5 niveles (principiante → maestro)\n"
-                  "📊 **Estadísticas**: Progreso detallado y recomendaciones\n"
-                  "📚 **Tabla Completa**: Todos los hiragana organizados\n"
-                  "💡 **Consejos**: Tips para aprender más eficientemente\n"
-                  "🎲 **Práctica**: Conjuntos aleatorios para estudiar\n\n"
+                  "💡 **Recomendaciones de Inicio:**\n"
+                  "🔰 **Principiantes**: Empieza con múltiple choice de hiragana en nivel principiante\n"
+                  "📚 **Nivel Intermedio**: Combina hiragana abierto + tarjetas de kanji\n"
+                  "🎯 **Avanzado**: Múltiple choice de kanji para afianzar conocimientos\n\n"
                   
-                  "💡 **Recomendación para principiantes**: Empieza con múltiple choice en nivel principiante.\n"
-                  "🎮 **Flujo recomendado**: Múltiple choice → acostumbrarse → preguntas abiertas para el desafío.\n\n"
-                  "🚀 **Para empezar**: Dime qué tipo de pregunta quieres o configura tu nivel primero.",
+                  "🚀 **Para empezar**: Dime qué quieres practicar (hiragana o kanji) y el tipo de ejercicio.",
         "game_state": game_state
     }
 
@@ -648,7 +688,7 @@ def quick_answer(answer: str) -> dict:
     question_type = game_state['current_question'].get('type', 'open')
     
     if question_type == 'multiple_choice':
-        # Es una pregunta de opción múltiple
+        # Es una pregunta de hiragana múltiple choice
         if answer.strip().isdigit() and 1 <= int(answer.strip()) <= 4:
             return check_multiple_choice_answer(answer.strip())
         else:
@@ -656,9 +696,309 @@ def quick_answer(answer: str) -> dict:
                 "status": "error", 
                 "message": "❌ Para preguntas de opción múltiple, responde con un número del 1 al 4."
             }
+    elif question_type == 'kanji_multiple_choice':
+        # Es una pregunta de kanji múltiple choice
+        if answer.strip().isdigit() and 1 <= int(answer.strip()) <= 4:
+            return check_kanji_multiple_choice_answer(answer.strip())
+        else:
+            return {
+                "status": "error", 
+                "message": "❌ Para preguntas de kanji múltiple choice, responde con un número del 1 al 4."
+            }
     else:
-        # Es una pregunta abierta
+        # Es una pregunta abierta de hiragana
         return check_answer(answer)
+
+# ---------------- FUNCIONES DE KANJI ---------------- #
+
+def generate_kanji_flashcard() -> dict:
+    """
+    Genera una tarjeta de estudio aleatoria con información completa de un kanji.
+    """
+    if not KANJI_LIST:
+        return {
+            "status": "error",
+            "message": "❌ No se pudieron cargar los datos de kanji. Verifica que el archivo kanji-n5.json esté disponible."
+        }
+    
+    kanji = random.choice(KANJI_LIST)
+    kanji_data = KANJI_N5_DICT[kanji]
+    
+    return {
+        "status": "success",
+        "message": f"🎴 **Tarjeta de Kanji N5**\n\n"
+                  f"## {kanji}\n\n"
+                  f"**📖 Significado**: {kanji_data['significado']}\n"
+                  f"**🌸 Kunyomi** (lectura japonesa): {kanji_data['kunyomi']}\n"
+                  f"**🏛️ Onyomi** (lectura china): {kanji_data['onyomi']}\n"
+                  f"**🔤 Romaji**: {kanji_data['romaji']}\n\n"
+                  f"💡 **Tip**: Estudia las diferentes lecturas y cuándo usar cada una.\n"
+                  f"🎯 ¿Quieres otra tarjeta o prefieres practicar con múltiple choice?",
+        "kanji_data": {
+            "kanji": kanji,
+            "significado": kanji_data['significado'],
+            "kunyomi": kanji_data['kunyomi'],
+            "onyomi": kanji_data['onyomi'],
+            "romaji": kanji_data['romaji']
+        }
+    }
+
+def generate_kanji_multiple_choice(question_type: str = "kanji_to_meaning") -> dict:
+    """
+    Genera una pregunta de múltiple choice sobre kanji.
+    
+    Args:
+        question_type (str): "kanji_to_meaning", "meaning_to_kanji", "kanji_to_reading"
+    """
+    global game_state
+    
+    if not KANJI_LIST:
+        return {
+            "status": "error",
+            "message": "❌ No se pudieron cargar los datos de kanji."
+        }
+    
+    # Seleccionar kanji aleatorio
+    correct_kanji = random.choice(KANJI_LIST)
+    correct_data = KANJI_N5_DICT[correct_kanji]
+    
+    # Generar opciones incorrectas
+    wrong_options = []
+    while len(wrong_options) < 3:
+        random_kanji = random.choice(KANJI_LIST)
+        if random_kanji != correct_kanji:
+            wrong_data = KANJI_N5_DICT[random_kanji]
+            
+            if question_type == "kanji_to_meaning":
+                wrong_option = wrong_data['significado']
+            elif question_type == "meaning_to_kanji":
+                wrong_option = random_kanji
+            elif question_type == "kanji_to_reading":
+                # Mezclar kunyomi y onyomi para mayor dificultad
+                reading_options = [wrong_data['kunyomi'], wrong_data['onyomi']]
+                wrong_option = random.choice([r for r in reading_options if r])
+            
+            if wrong_option not in wrong_options:
+                wrong_options.append(wrong_option)
+    
+    # Configurar pregunta y respuesta correcta según el tipo
+    if question_type == "kanji_to_meaning":
+        question_text = f"**¿Cuál es el significado del kanji {correct_kanji}?**"
+        correct_answer = correct_data['significado']
+        hint_text = f"Romaji: {correct_data['romaji']}"
+    elif question_type == "meaning_to_kanji":
+        question_text = f"**¿Cuál kanji significa '{correct_data['significado']}'?**"
+        correct_answer = correct_kanji
+        hint_text = f"Romaji: {correct_data['romaji']}"
+    elif question_type == "kanji_to_reading":
+        question_text = f"**¿Cuál es una lectura correcta del kanji {correct_kanji}?**"
+        # Elegir aleatoriamente entre kunyomi y onyomi
+        reading_options = [correct_data['kunyomi'], correct_data['onyomi']]
+        correct_answer = random.choice([r for r in reading_options if r])
+        hint_text = f"Significado: {correct_data['significado']}"
+    
+    # Crear lista de opciones y mezclar
+    all_options = wrong_options + [correct_answer]
+    random.shuffle(all_options)
+    correct_position = all_options.index(correct_answer) + 1
+    
+    # Formatear opciones para mostrar
+    options_text = ""
+    for i, option in enumerate(all_options, 1):
+        options_text += f"{i}. **{option}**\n"
+    
+    # Guardar estado de la pregunta
+    game_state['current_question'] = {
+        'kanji': correct_kanji,
+        'correct_answer': correct_answer,
+        'options': all_options,
+        'correct_position': correct_position,
+        'question_type': question_type,
+        'type': 'kanji_multiple_choice',
+        'display': question_text
+    }
+    
+    return {
+        "status": "success",
+        "message": f"🎯 **Pregunta de Kanji N5 - #{game_state.get('kanji_total', 0) + 1}**\n\n"
+                  f"{question_text}\n\n"
+                  f"{options_text}\n"
+                  f"💡 **Pista**: {hint_text}\n\n"
+                  f"📝 Responde con el número de la opción (1-4)",
+        "question": {
+            "kanji": correct_kanji,
+            "type": question_type,
+            "options": all_options,
+            "hint": hint_text
+        }
+    }
+
+def check_kanji_multiple_choice_answer(option_number: str) -> dict:
+    """
+    Verifica la respuesta de múltiple choice para kanji y genera automáticamente la siguiente pregunta.
+    
+    Args:
+        option_number (str): Número de la opción seleccionada (1-4)
+    """
+    global game_state
+    
+    if not game_state['current_question'] or game_state['current_question'].get('type') != 'kanji_multiple_choice':
+        return {
+            "status": "error",
+            "message": "❌ No hay pregunta de kanji múltiple choice activa."
+        }
+    
+    try:
+        selected_option = int(option_number)
+    except ValueError:
+        return {
+            "status": "error",
+            "message": "❌ Por favor, ingresa un número válido (1-4)."
+        }
+    
+    if selected_option < 1 or selected_option > 4:
+        return {
+            "status": "error",
+            "message": "❌ Por favor, selecciona una opción entre 1 y 4."
+        }
+    
+    question = game_state['current_question']
+    is_correct = selected_option == question['correct_position']
+    selected_answer = question['options'][selected_option - 1]
+    correct_answer = question['correct_answer']
+    
+    # Actualizar estadísticas de kanji
+    game_state['kanji_total'] = game_state.get('kanji_total', 0) + 1
+    if is_correct:
+        game_state['kanji_score'] = game_state.get('kanji_score', 0) + 1
+        result_emoji = random.choice(HIRAGANA_GAME_CONFIG['celebration_emojis'])
+        celebration_msg = random.choice(HIRAGANA_GAME_CONFIG['encouragement_messages'])
+        result_text = f"¡CORRECTO! {celebration_msg}"
+    else:
+        result_emoji = "❌"
+        result_text = "Incorrecto - ¡Sigue practicando kanji! 頑張って！"
+    
+    # Información del kanji
+    kanji_char = question['kanji']
+    kanji_info = KANJI_N5_DICT[kanji_char]
+    
+    # Limpiar pregunta actual
+    game_state['current_question'] = None
+    
+    # Generar siguiente pregunta automáticamente
+    next_question_result = generate_kanji_multiple_choice(question['question_type'])
+    
+    if is_correct:
+        # Mensaje corto cuando acierta: solo información del kanji + siguiente pregunta
+        kanji_brief = f"📚 **{kanji_char}** - {kanji_info['significado']}\n"
+        kanji_brief += f"🌸 **Kunyomi**: {kanji_info['kunyomi']}\n"
+        kanji_brief += f"🏛️ **Onyomi**: {kanji_info['onyomi']}\n"
+        kanji_brief += f"🔤 **Romaji**: {kanji_info['romaji']}"
+        
+        if next_question_result['status'] == 'success':
+            next_question_text = f"\n\n🎯 **SIGUIENTE PREGUNTA:**\n\n{next_question_result['message']}"
+        else:
+            next_question_text = "\n\n🎮 ¿Quieres continuar practicando kanji?"
+        
+        return {
+            "status": "success",
+            "message": f"{result_emoji} **{result_text}**\n\n"
+                      f"{kanji_brief}"
+                      f"{next_question_text}",
+            "correct": True,
+            "kanji_score": game_state['kanji_score'],
+            "kanji_total": game_state['kanji_total'],
+            "auto_generated_next": next_question_result['status'] == 'success'
+        }
+    else:
+        # Mensaje detallado cuando falla: mostrar todas las opciones
+        kanji_details = f"📚 **Información completa del kanji {kanji_char}**:\n"
+        kanji_details += f"• **Significado**: {kanji_info['significado']}\n"
+        kanji_details += f"• **Kunyomi**: {kanji_info['kunyomi']}\n"
+        kanji_details += f"• **Onyomi**: {kanji_info['onyomi']}\n"
+        kanji_details += f"• **Romaji**: {kanji_info['romaji']}\n\n"
+        
+        # Mostrar opciones con respuesta correcta marcada
+        options_review = "**Opciones:**\n"
+        for i, option in enumerate(question['options'], 1):
+            if i == question['correct_position']:
+                options_review += f"{i}. {option} ✅ **(Correcta)**\n"
+            elif i == selected_option:
+                options_review += f"{i}. {option} ❌ **(Tu selección)**\n"
+            else:
+                options_review += f"{i}. {option}\n"
+        
+        # Calcular precisión de kanji
+        kanji_accuracy = (game_state['kanji_score'] / game_state['kanji_total']) * 100 if game_state['kanji_total'] > 0 else 0
+        
+        if next_question_result['status'] == 'success':
+            next_question_text = f"\n\n🎯 **SIGUIENTE PREGUNTA:**\n\n{next_question_result['message']}"
+        else:
+            next_question_text = "\n\n🎮 ¿Quieres continuar practicando kanji?"
+        
+        return {
+            "status": "success",
+            "message": f"{result_emoji} **{result_text}**\n\n"
+                      f"{kanji_details}"
+                      f"{options_review}\n"
+                      f"📊 **Estadísticas**: {game_state['kanji_score']}/{game_state['kanji_total']} ({kanji_accuracy:.1f}%)"
+                      f"{next_question_text}",
+            "correct": False,
+            "kanji_score": game_state['kanji_score'],
+            "kanji_total": game_state['kanji_total'],
+            "accuracy": kanji_accuracy,
+            "auto_generated_next": next_question_result['status'] == 'success'
+        }
+
+def get_kanji_stats() -> dict:
+    """
+    Muestra estadísticas específicas de kanji.
+    """
+    kanji_score = game_state.get('kanji_score', 0)
+    kanji_total = game_state.get('kanji_total', 0)
+    
+    if kanji_total == 0:
+        return {
+            "status": "success",
+            "message": "📊 **Estadísticas de Kanji N5**\n\n"
+                      f"🎴 Aún no has practicado kanji.\n"
+                      f"📚 Total de kanji disponibles: {len(KANJI_LIST)}\n\n"
+                      f"🚀 ¡Empieza con una tarjeta aleatoria o múltiple choice!",
+            "stats": {"total_available": len(KANJI_LIST)}
+        }
+    
+    accuracy = (kanji_score / kanji_total) * 100
+    
+    # Análisis de progreso
+    if accuracy >= 90:
+        performance = "🏆 ¡Maestro del Kanji!"
+        advice = "¡Increíble! Considera practicar kanji más avanzados."
+    elif accuracy >= 75:
+        performance = "🥇 Excelente"
+        advice = "¡Muy bien! Sigue practicando para alcanzar la perfección."
+    elif accuracy >= 60:
+        performance = "🥈 Bueno"
+        advice = "Buen progreso. Revisa las tarjetas antes de hacer múltiple choice."
+    else:
+        performance = "📚 En desarrollo"
+        advice = "Usa más las tarjetas para memorizar antes de los tests."
+    
+    return {
+        "status": "success",
+        "message": f"📊 **Estadísticas de Kanji N5**\n\n"
+                  f"📚 **Kanji disponibles**: {len(KANJI_LIST)}\n"
+                  f"✅ **Respuestas correctas**: {kanji_score}\n"
+                  f"📝 **Total intentos**: {kanji_total}\n"
+                  f"🎯 **Precisión**: {accuracy:.1f}%\n"
+                  f"🏅 **Rendimiento**: {performance}\n\n"
+                  f"💡 **Consejo**: {advice}",
+        "stats": {
+            "score": kanji_score,
+            "total": kanji_total,
+            "accuracy": accuracy,
+            "available_kanji": len(KANJI_LIST)
+        }
+    }
 
 def get_learning_tips() -> dict:
     """
@@ -774,39 +1114,55 @@ def reset_game_progress() -> dict:
 root_agent = Agent(
     name="japanese_tutor",
     model="gemini-2.0-flash",
-    description="Agente interactivo para aprender hiragana japonés con juegos educativos y sistema de progresión.",
+    description="Agente interactivo para aprender hiragana y kanji japonés con juegos educativos y sistema de progresión.",
     instruction=(
-        "Eres un tutor de japonés especializado en enseñar hiragana a través de juegos interactivos y motivadores.\n\n"
+        "Eres un tutor de japonés especializado en enseñar hiragana y kanji N5 a través de juegos interactivos y motivadores.\n\n"
         
         "🎮 **FUNCIONALIDADES PRINCIPALES**:\n"
+        
+        "**📝 HIRAGANA:**\n"
         "1. **Preguntas Abiertas**: Hiragana ↔ Romaji sin opciones (más desafiante)\n"
-        "2. **🆕 Múltiple Choice**: 4 opciones para elegir (ideal para principiantes)\n"
+        "2. **Múltiple Choice**: 4 opciones para elegir (ideal para principiantes)\n"
+        "3. **5 Niveles de Dificultad**: Principiante → Básico → Intermedio → Avanzado → Maestro\n\n"
+        
+        "**🎴 KANJI N5:**\n"
+        "4. **🆕 Tarjetas de Estudio**: Información completa de kanji aleatorios\n"
+        "5. **🆕 Múltiple Choice Kanji**: Kanji → Significado | Significado → Kanji | Kanji → Lectura\n"
+        "6. **Auto-avance**: Genera automáticamente la siguiente pregunta tras responder\n"
+        "7. **Estadísticas Separadas**: Progreso independiente para hiragana y kanji\n\n"
         "3. **5 Niveles de Dificultad**: Principiante (10) → Básico (15) → Intermedio (30) → Avanzado (46) → Maestro (46+)\n"
         "4. **Sistema de Puntuación Inteligente**: Estadísticas detalladas con feedback motivacional\n"
         "5. **Herramientas de Aprendizaje**: Tabla completa, tips educativos, resúmenes de progreso\n"
         "6. **Adaptabilidad**: Cambia entre modos según el nivel de comodidad del usuario\n\n"
         
         "🎯 **COMANDOS DISPONIBLES**:\n"
-        "**🎮 Juego:**\n"
+        "**🎮 Hiragana:**\n"
         "- 'empezar juego' / 'start': Inicia el sistema de juego\n"
         "- 'pregunta hiragana': Genera pregunta hiragana → romaji (abierta)\n"
         "- 'pregunta romaji': Genera pregunta romaji → hiragana (abierta)\n"
         "- 'multiple choice hiragana': Pregunta hiragana → romaji con opciones\n"
-        "- 'multiple choice romaji': Pregunta romaji → hiragana con opciones\n"
-        "- '[respuesta]' o '[número]': Para responder preguntas activas\n\n"
+        "- 'multiple choice romaji': Pregunta romaji → hiragana con opciones\n\n"
+        
+        "**🎴 Kanji N5:**\n"
+        "- 'tarjeta kanji': Genera tarjeta de estudio aleatoria con información completa\n"
+        "- 'kanji significado': Múltiple choice kanji → significado\n"
+        "- 'significado kanji': Múltiple choice significado → kanji\n"
+        "- 'kanji lectura': Múltiple choice kanji → lectura (kunyomi/onyomi)\n"
+        "- '[número 1-4]': Para responder preguntas de múltiple choice\n\n"
         
         "**⚙️ Configuración:**\n"
-        "- 'dificultad [nivel]': Cambia entre principiante/basico/intermedio/avanzado/maestro\n"
+        "- 'dificultad [nivel]': Cambia entre principiante/basico/intermedio/avanzado/maestro (solo hiragana)\n"
         "- 'reiniciar progreso': Borra todas las estadísticas\n\n"
         
         "**📊 Información y Progreso:**\n"
-        "- 'estadisticas': Muestra progreso actual\n"
+        "- 'estadisticas': Muestra progreso de hiragana\n"
+        "- 'estadisticas kanji': Muestra progreso específico de kanji\n"
         "- 'resumen progreso': Análisis completo con recomendaciones\n"
         "- 'consejos': Tips para aprender más eficientemente\n\n"
         
         "**📚 Estudio:**\n"
         "- 'tabla': Muestra tabla completa de hiragana por familias\n"
-        "- 'practica [número]': Genera conjunto aleatorio para estudiar\n\n"
+        "- 'practica [número]': Genera conjunto aleatorio de hiragana para estudiar\n\n"
         
         "📝 **NIVELES DE DIFICULTAD**:\n"
         "• **Principiante** (10 chars): あいうえお + かきくけこ - Ideal para comenzar\n"
@@ -854,6 +1210,7 @@ root_agent = Agent(
         "Tu misión es hacer este aprendizaje divertido, efectivo y culturalmente enriquecedor."
     ),
     tools=[
+        # Funciones de Hiragana
         start_hiragana_game,
         set_difficulty_level,
         generate_hiragana_question,
@@ -865,6 +1222,12 @@ root_agent = Agent(
         get_game_stats,
         show_hiragana_table,
         get_random_hiragana_set,
+        # Funciones de Kanji
+        generate_kanji_flashcard,
+        generate_kanji_multiple_choice,
+        check_kanji_multiple_choice_answer,
+        get_kanji_stats,
+        # Funciones generales
         get_learning_tips,
         show_progress_summary,
         reset_game_progress

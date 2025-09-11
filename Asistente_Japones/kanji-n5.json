@@ -1,0 +1,482 @@
+{
+  "一": {
+    "significado": "uno",
+    "kunyomi": "ひと",
+    "onyomi": "イチ",
+    "romaji": "hito / ichi"
+  },
+  "七": {
+    "significado": "siete",
+    "kunyomi": "なな",
+    "onyomi": "シチ",
+    "romaji": "nana / shichi"
+  },
+  "万": {
+    "significado": "diez mil",
+    "kunyomi": "よろず",
+    "onyomi": "マン、バン",
+    "romaji": "yorozu / man, ban"
+  },
+  "三": {
+    "significado": "tres",
+    "kunyomi": "み、みっつ",
+    "onyomi": "サン",
+    "romaji": "mi, mittsu / san"
+  },
+  "上": {
+    "significado": "arriba",
+    "kunyomi": "うえ、あが(る)",
+    "onyomi": "ジョウ",
+    "romaji": "ue, aga(ru) / jou"
+  },
+  "下": {
+    "significado": "abajo",
+    "kunyomi": "した、さ(がる)",
+    "onyomi": "カ、ゲ",
+    "romaji": "shita, sa(garu) / ka, ge"
+  },
+  "中": {
+    "significado": "centro",
+    "kunyomi": "なか",
+    "onyomi": "チュウ",
+    "romaji": "naka / chuu"
+  },
+  "九": {
+    "significado": "nueve",
+    "kunyomi": "ここの",
+    "onyomi": "キュウ、ク",
+    "romaji": "kokono / kyuu, ku"
+  },
+  "二": {
+    "significado": "dos",
+    "kunyomi": "ふた",
+    "onyomi": "ニ",
+    "romaji": "futa / ni"
+  },
+  "五": {
+    "significado": "cinco",
+    "kunyomi": "いつ",
+    "onyomi": "ゴ",
+    "romaji": "itsu / go"
+  },
+  "人": {
+    "significado": "persona",
+    "kunyomi": "ひと",
+    "onyomi": "ジン、ニン",
+    "romaji": "hito / jin, nin"
+  },
+  "今": {
+    "significado": "ahora",
+    "kunyomi": "いま",
+    "onyomi": "コン",
+    "romaji": "ima / kon"
+  },
+  "休": {
+    "significado": "descansar",
+    "kunyomi": "やす(む)",
+    "onyomi": "キュウ",
+    "romaji": "yasu(mu) / kyuu"
+  },
+  "何": {
+    "significado": "qué",
+    "kunyomi": "なに、なん",
+    "onyomi": "カ",
+    "romaji": "nani, nan / ka"
+  },
+  "先": {
+    "significado": "antes",
+    "kunyomi": "さき",
+    "onyomi": "セン",
+    "romaji": "saki / sen"
+  },
+  "入": {
+    "significado": "entrar",
+    "kunyomi": "はい(る)",
+    "onyomi": "ニュウ",
+    "romaji": "hai(ru) / nyuu"
+  },
+  "八": {
+    "significado": "ocho",
+    "kunyomi": "や",
+    "onyomi": "ハチ",
+    "romaji": "ya / hachi"
+  },
+  "六": {
+    "significado": "seis",
+    "kunyomi": "む",
+    "onyomi": "ロク",
+    "romaji": "mu / roku"
+  },
+  "円": {
+    "significado": "yen",
+    "kunyomi": "まる",
+    "onyomi": "エン",
+    "romaji": "maru / en"
+  },
+  "出": {
+    "significado": "salir",
+    "kunyomi": "で(る)",
+    "onyomi": "シュツ",
+    "romaji": "de(ru) / shutsu"
+  },
+  "分": {
+    "significado": "minuto",
+    "kunyomi": "わ(ける)",
+    "onyomi": "ブン、フン",
+    "romaji": "wa(keru) / bun, fun"
+  },
+  "前": {
+    "significado": "anterior",
+    "kunyomi": "まえ",
+    "onyomi": "ゼン",
+    "romaji": "mae / zen"
+  },
+  "北": {
+    "significado": "norte",
+    "kunyomi": "きた",
+    "onyomi": "ホク",
+    "romaji": "kita / hoku"
+  },
+  "十": {
+    "significado": "diez",
+    "kunyomi": "とお",
+    "onyomi": "ジュウ",
+    "romaji": "too / juu"
+  },
+  "千": {
+    "significado": "mil",
+    "kunyomi": "ち",
+    "onyomi": "セン",
+    "romaji": "chi / sen"
+  },
+  "午": {
+    "significado": "mediodía",
+    "kunyomi": "うま",
+    "onyomi": "ゴ",
+    "romaji": "uma / go"
+  },
+  "半": {
+    "significado": "mitad",
+    "kunyomi": "なか(ば)",
+    "onyomi": "ハン",
+    "romaji": "naka(ba) / han"
+  },
+  "南": {
+    "significado": "sur",
+    "kunyomi": "みなみ",
+    "onyomi": "ナン",
+    "romaji": "minami / nan"
+  },
+  "友": {
+    "significado": "amigo",
+    "kunyomi": "とも",
+    "onyomi": "ユウ",
+    "romaji": "tomo / yuu"
+  },
+  "右": {
+    "significado": "derecha",
+    "kunyomi": "みぎ",
+    "onyomi": "ウ",
+    "romaji": "migi / u"
+  },
+  "名": {
+    "significado": "nombre",
+    "kunyomi": "な",
+    "onyomi": "メイ",
+    "romaji": "na / mei"
+  },
+  "四": {
+    "significado": "cuatro",
+    "kunyomi": "よ、よん",
+    "onyomi": "シ",
+    "romaji": "yo, yon / shi"
+  },
+  "国": {
+    "significado": "país",
+    "kunyomi": "くに",
+    "onyomi": "コク",
+    "romaji": "kuni / koku"
+  },
+  "土": {
+    "significado": "tierra",
+    "kunyomi": "つち",
+    "onyomi": "ド、ト",
+    "romaji": "tsuchi / do, to"
+  },
+  "外": {
+    "significado": "fuera",
+    "kunyomi": "そと",
+    "onyomi": "ガイ",
+    "romaji": "soto / gai"
+  },
+  "大": {
+    "significado": "grande",
+    "kunyomi": "おお(きい)",
+    "onyomi": "ダイ、タイ",
+    "romaji": "oo(kii) / dai, tai"
+  },
+  "天": {
+    "significado": "cielo",
+    "kunyomi": "あま",
+    "onyomi": "テン",
+    "romaji": "ama / ten"
+  },
+  "女": {
+    "significado": "mujer",
+    "kunyomi": "おんな",
+    "onyomi": "ジョ",
+    "romaji": "onna / jo"
+  },
+  "子": {
+    "significado": "niño",
+    "kunyomi": "こ",
+    "onyomi": "シ",
+    "romaji": "ko / shi"
+  },
+  "学": {
+    "significado": "estudiar",
+    "kunyomi": "まな(ぶ)",
+    "onyomi": "ガク",
+    "romaji": "mana(bu) / gaku"
+  },
+  "小": {
+    "significado": "pequeño",
+    "kunyomi": "ちい(さい)",
+    "onyomi": "ショウ",
+    "romaji": "chii(sai) / shou"
+  },
+  "山": {
+    "significado": "montaña",
+    "kunyomi": "やま",
+    "onyomi": "サン",
+    "romaji": "yama / san"
+  },
+  "川": {
+    "significado": "río",
+    "kunyomi": "かわ",
+    "onyomi": "セン",
+    "romaji": "kawa / sen"
+  },
+  "左": {
+    "significado": "izquierda",
+    "kunyomi": "ひだり",
+    "onyomi": "サ",
+    "romaji": "hidari / sa"
+  },
+  "年": {
+    "significado": "año",
+    "kunyomi": "とし",
+    "onyomi": "ネン",
+    "romaji": "toshi / nen"
+  },
+  "後": {
+    "significado": "después",
+    "kunyomi": "あと、うし(ろ)",
+    "onyomi": "ゴ、コウ",
+    "romaji": "ato, ushi(ro) / go, kou"
+  },
+  "日": {
+    "significado": "día",
+    "kunyomi": "ひ、か",
+    "onyomi": "ニチ、ジツ",
+    "romaji": "hi, ka / nichi, jitsu"
+  },
+  "時": {
+    "significado": "tiempo",
+    "kunyomi": "とき",
+    "onyomi": "ジ",
+    "romaji": "toki / ji"
+  },
+  "書": {
+    "significado": "escribir",
+    "kunyomi": "か(く)",
+    "onyomi": "ショ",
+    "romaji": "ka(ku) / sho"
+  },
+  "月": {
+    "significado": "luna",
+    "kunyomi": "つき",
+    "onyomi": "ゲツ、ガツ",
+    "romaji": "tsuki / getsu, gatsu"
+  },
+  "木": {
+    "significado": "árbol",
+    "kunyomi": "き",
+    "onyomi": "モク、ボク",
+    "romaji": "ki / moku, boku"
+  },
+  "本": {
+    "significado": "libro",
+    "kunyomi": "もと",
+    "onyomi": "ホン",
+    "romaji": "moto / hon"
+  },
+  "来": {
+    "significado": "venir",
+    "kunyomi": "く(る)",
+    "onyomi": "ライ",
+    "romaji": "ku(ru) / rai"
+  },
+  "東": {
+    "significado": "este",
+    "kunyomi": "ひがし",
+    "onyomi": "トウ",
+    "romaji": "higashi / tou"
+  },
+  "校": {
+    "significado": "escuela",
+    "kunyomi": "-",
+    "onyomi": "コウ",
+    "romaji": "kou"
+  },
+  "母": {
+    "significado": "madre",
+    "kunyomi": "はは",
+    "onyomi": "ボ",
+    "romaji": "haha / bo"
+  },
+  "毎": {
+    "significado": "cada",
+    "kunyomi": "-",
+    "onyomi": "マイ",
+    "romaji": "mai"
+  },
+  "気": {
+    "significado": "espíritu",
+    "kunyomi": "-",
+    "onyomi": "キ",
+    "romaji": "ki"
+  },
+  "水": {
+    "significado": "agua",
+    "kunyomi": "みず",
+    "onyomi": "スイ",
+    "romaji": "mizu / sui"
+  },
+  "火": {
+    "significado": "fuego",
+    "kunyomi": "ひ",
+    "onyomi": "カ",
+    "romaji": "hi / ka"
+  },
+  "父": {
+    "significado": "padre",
+    "kunyomi": "ちち",
+    "onyomi": "フ",
+    "romaji": "chichi / fu"
+  },
+  "生": {
+    "significado": "vida",
+    "kunyomi": "い(きる)",
+    "onyomi": "セイ、ショウ",
+    "romaji": "i(kiru) / sei, shou"
+  },
+  "男": {
+    "significado": "hombre",
+    "kunyomi": "おとこ",
+    "onyomi": "ダン、ナン",
+    "romaji": "otoko / dan, nan"
+  },
+  "白": {
+    "significado": "blanco",
+    "kunyomi": "しろ(い)",
+    "onyomi": "ハク、ビャク",
+    "romaji": "shiro(i) / haku, byaku"
+  },
+  "百": {
+    "significado": "cien",
+    "kunyomi": "もも",
+    "onyomi": "ヒャク",
+    "romaji": "momo / hyaku"
+  },
+  "聞": {
+    "significado": "escuchar",
+    "kunyomi": "き(く)",
+    "onyomi": "ブン、モン",
+    "romaji": "ki(ku) / bun, mon"
+  },
+  "行": {
+    "significado": "ir",
+    "kunyomi": "い(く)、ゆ(く)",
+    "onyomi": "コウ、ギョウ",
+    "romaji": "i(ku), yu(ku) / kou, gyou"
+  },
+  "西": {
+    "significado": "oeste",
+    "kunyomi": "にし",
+    "onyomi": "セイ、サイ",
+    "romaji": "nishi / sei, sai"
+  },
+  "見": {
+    "significado": "ver",
+    "kunyomi": "み(る)",
+    "onyomi": "ケン",
+    "romaji": "mi(ru) / ken"
+  },
+  "話": {
+    "significado": "hablar",
+    "kunyomi": "はな(す)",
+    "onyomi": "ワ",
+    "romaji": "hana(su) / wa"
+  },
+  "語": {
+    "significado": "idioma",
+    "kunyomi": "かた(る)",
+    "onyomi": "ゴ",
+    "romaji": "kata(ru) / go"
+  },
+  "読": {
+    "significado": "leer",
+    "kunyomi": "よ(む)",
+    "onyomi": "ドク、トク",
+    "romaji": "yo(mu) / doku, toku"
+  },
+  "車": {
+    "significado": "coche",
+    "kunyomi": "くるま",
+    "onyomi": "シャ",
+    "romaji": "kuruma / sha"
+  },
+  "金": {
+    "significado": "dinero",
+    "kunyomi": "かね",
+    "onyomi": "キン、コン",
+    "romaji": "kane / kin, kon"
+  },
+  "長": {
+    "significado": "largo",
+    "kunyomi": "なが(い)",
+    "onyomi": "チョウ",
+    "romaji": "naga(i) / chou"
+  },
+  "間": {
+    "significado": "entre",
+    "kunyomi": "あいだ、ま",
+    "onyomi": "カン、ケン",
+    "romaji": "aida, ma / kan, ken"
+  },
+  "雨": {
+    "significado": "lluvia",
+    "kunyomi": "あめ",
+    "onyomi": "ウ",
+    "romaji": "ame / u"
+  },
+  "電": {
+    "significado": "electricidad",
+    "kunyomi": "-",
+    "onyomi": "デン",
+    "romaji": "den"
+  },
+  "食": {
+    "significado": "comida",
+    "kunyomi": "た(べる)",
+    "onyomi": "ショク",
+    "romaji": "ta(beru) / shoku"
+  },
+  "高": {
+    "significado": "alto",
+    "kunyomi": "たか(い)",
+    "onyomi": "コウ",
+    "romaji": "taka(i) / kou"
+  }
+}
