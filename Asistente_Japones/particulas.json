@@ -1,0 +1,402 @@
+{
+  "は": {
+    "romaji": "wa",
+    "tipo": "Partícula de tema",
+    "uso": "Marca el tema de la oración",
+    "ejemplos": [
+      {
+        "japones": "私は学生です。",
+        "romaji": "Watashi wa gakusei desu.",
+        "espanol": "Yo soy estudiante.",
+        "explicacion": "私 es el tema de la oración"
+      },
+      {
+        "japones": "今日は暑いです。",
+        "romaji": "Kyou wa atsui desu.",
+        "espanol": "Hoy hace calor.",
+        "explicacion": "今日 es el tema - hablamos sobre 'hoy'"
+      },
+      {
+        "japones": "寿司は美味しいです。",
+        "romaji": "Sushi wa oishii desu.",
+        "espanol": "El sushi está delicioso.",
+        "explicacion": "寿司 es el tema sobre el cual damos información"
+      }
+    ]
+  },
+  "が": {
+    "romaji": "ga",
+    "tipo": "Partícula de sujeto",
+    "uso": "Marca el sujeto gramatical de la oración",
+    "ejemplos": [
+      {
+        "japones": "猫がいます。",
+        "romaji": "Neko ga imasu.",
+        "espanol": "Hay un gato.",
+        "explicacion": "猫 es el sujeto que realiza la acción de existir"
+      },
+      {
+        "japones": "誰が来ましたか？",
+        "romaji": "Dare ga kimashita ka?",
+        "espanol": "¿Quién vino?",
+        "explicacion": "Pregunta por el sujeto específico"
+      },
+      {
+        "japones": "雨が降っています。",
+        "romaji": "Ame ga futte imasu.",
+        "espanol": "Está lloviendo.",
+        "explicacion": "雨 es el sujeto que ejecuta la acción de caer"
+      }
+    ]
+  },
+  "を": {
+    "romaji": "wo/o",
+    "tipo": "Partícula de objeto directo",
+    "uso": "Marca el objeto directo del verbo",
+    "ejemplos": [
+      {
+        "japones": "本を読みます。",
+        "romaji": "Hon wo yomimasu.",
+        "espanol": "Leo un libro.",
+        "explicacion": "本 es lo que se lee (objeto directo)"
+      },
+      {
+        "japones": "コーヒーを飲みました。",
+        "romaji": "Koohii wo nomimashita.",
+        "espanol": "Bebí café.",
+        "explicacion": "コーヒー es lo que se bebió"
+      },
+      {
+        "japones": "音楽を聞きます。",
+        "romaji": "Ongaku wo kikimasu.",
+        "espanol": "Escucho música.",
+        "explicacion": "音楽 es el objeto que recibe la acción de escuchar"
+      }
+    ]
+  },
+  "に": {
+    "romaji": "ni",
+    "tipo": "Partícula de dirección/tiempo/existencia",
+    "uso": "Indica dirección, tiempo específico, lugar de existencia",
+    "ejemplos": [
+      {
+        "japones": "学校に行きます。",
+        "romaji": "Gakkou ni ikimasu.",
+        "espanol": "Voy a la escuela.",
+        "explicacion": "Indica dirección hacia donde"
+      },
+      {
+        "japones": "7時に起きます。",
+        "romaji": "Shichiji ni okimasu.",
+        "espanol": "Me levanto a las 7.",
+        "explicacion": "Marca tiempo específico"
+      },
+      {
+        "japones": "机の上に本があります。",
+        "romaji": "Tsukue no ue ni hon ga arimasu.",
+        "espanol": "Hay un libro encima del escritorio.",
+        "explicacion": "Indica lugar donde existe algo"
+      }
+    ]
+  },
+  "で": {
+    "romaji": "de",
+    "tipo": "Partícula de lugar/medio/manera",
+    "uso": "Indica lugar de acción, medio o herramienta",
+    "ejemplos": [
+      {
+        "japones": "図書館で勉強します。",
+        "romaji": "Toshokan de benkyou shimasu.",
+        "espanol": "Estudio en la biblioteca.",
+        "explicacion": "Lugar donde ocurre la acción"
+      },
+      {
+        "japones": "ペンで書きます。",
+        "romaji": "Pen de kakimasu.",
+        "espanol": "Escribo con bolígrafo.",
+        "explicacion": "Herramienta utilizada"
+      },
+      {
+        "japones": "日本語で話します。",
+        "romaji": "Nihongo de hanashimasu.",
+        "espanol": "Hablo en japonés.",
+        "explicacion": "Medio de comunicación"
+      }
+    ]
+  },
+  "と": {
+    "romaji": "to",
+    "tipo": "Partícula de compañía/enumeración",
+    "uso": "Indica compañía ('con') o une sustantivos",
+    "ejemplos": [
+      {
+        "japones": "友達と映画を見ました。",
+        "romaji": "Tomodachi to eiga wo mimashita.",
+        "espanol": "Vi una película con un amigo.",
+        "explicacion": "Indica compañía"
+      },
+      {
+        "japones": "りんごとバナナを買いました。",
+        "romaji": "Ringo to banana wo kaimashita.",
+        "espanol": "Compré manzanas y plátanos.",
+        "explicacion": "Une sustantivos (lista exhaustiva)"
+      },
+      {
+        "japones": "母と電話で話しました。",
+        "romaji": "Haha to denwa de hanashimashita.",
+        "espanol": "Hablé por teléfono con mi madre.",
+        "explicacion": "Indica con quién se realiza la acción"
+      }
+    ]
+  },
+  "か": {
+    "romaji": "ka",
+    "tipo": "Partícula interrogativa",
+    "uso": "Convierte oraciones en preguntas",
+    "ejemplos": [
+      {
+        "japones": "これは何ですか？",
+        "romaji": "Kore wa nan desu ka?",
+        "espanol": "¿Qué es esto?",
+        "explicacion": "Forma una pregunta"
+      },
+      {
+        "japones": "明日来ますか？",
+        "romaji": "Ashita kimasu ka?",
+        "espanol": "¿Vienes mañana?",
+        "explicacion": "Pregunta de sí/no"
+      },
+      {
+        "japones": "コーヒーか紅茶はいかがですか？",
+        "romaji": "Koohii ka koucha wa ikaga desu ka?",
+        "espanol": "¿Qué tal café o té?",
+        "explicacion": "か entre opciones significa 'o'"
+      }
+    ]
+  },
+  "の": {
+    "romaji": "no",
+    "tipo": "Partícula posesiva/modificadora",
+    "uso": "Indica posesión o modifica sustantivos",
+    "ejemplos": [
+      {
+        "japones": "私の車です。",
+        "romaji": "Watashi no kuruma desu.",
+        "espanol": "Es mi coche.",
+        "explicacion": "Indica posesión"
+      },
+      {
+        "japones": "日本の料理",
+        "romaji": "Nihon no ryouri",
+        "espanol": "Comida japonesa",
+        "explicacion": "Modifica/describe el sustantivo"
+      },
+      {
+        "japones": "赤いのをください。",
+        "romaji": "Akai no wo kudasai.",
+        "espanol": "Dame el rojo, por favor.",
+        "explicacion": "の sustituye un sustantivo (nominalización)"
+      }
+    ]
+  },
+  "から": {
+    "romaji": "kara",
+    "tipo": "Partícula de origen/razón",
+    "uso": "Indica punto de partida, origen o causa",
+    "ejemplos": [
+      {
+        "japones": "東京から来ました。",
+        "romaji": "Toukyou kara kimashita.",
+        "espanol": "Vine desde Tokio.",
+        "explicacion": "Punto de partida/origen"
+      },
+      {
+        "japones": "忙しいから行けません。",
+        "romaji": "Isogashii kara ikemasen.",
+        "espanol": "No puedo ir porque estoy ocupado.",
+        "explicacion": "Indica razón/causa"
+      },
+      {
+        "japones": "9時から5時まで働きます。",
+        "romaji": "Kuji kara goji made hatarakimasu.",
+        "espanol": "Trabajo desde las 9 hasta las 5.",
+        "explicacion": "Punto de inicio temporal"
+      }
+    ]
+  },
+  "まで": {
+    "romaji": "made",
+    "tipo": "Partícula de límite",
+    "uso": "Indica punto final, límite temporal o espacial",
+    "ejemplos": [
+      {
+        "japones": "駅まで歩きます。",
+        "romaji": "Eki made arukimasu.",
+        "espanol": "Camino hasta la estación.",
+        "explicacion": "Punto final del movimiento"
+      },
+      {
+        "japones": "5時まで働きます。",
+        "romaji": "Goji made hatarakimasu.",
+        "espanol": "Trabajo hasta las 5.",
+        "explicacion": "Límite temporal"
+      },
+      {
+        "japones": "来週まで待ってください。",
+        "romaji": "Raishuu made matte kudasai.",
+        "espanol": "Por favor espere hasta la próxima semana.",
+        "explicacion": "Límite temporal de una acción"
+      }
+    ]
+  },
+  "や": {
+    "romaji": "ya",
+    "tipo": "Partícula de enumeración parcial",
+    "uso": "Une sustantivos (lista no exhaustiva, 'entre otras cosas')",
+    "ejemplos": [
+      {
+        "japones": "果物やパンを買いました。",
+        "romaji": "Kudamono ya pan wo kaimashita.",
+        "espanol": "Compré fruta, pan y otras cosas.",
+        "explicacion": "Lista parcial, implica que hay más cosas"
+      },
+      {
+        "japones": "本や雑誌を読みます。",
+        "romaji": "Hon ya zasshi wo yomimasu.",
+        "espanol": "Leo libros, revistas y demás.",
+        "explicacion": "Enumera algunos ejemplos, no todos"
+      },
+      {
+        "japones": "猫や犬が好きです。",
+        "romaji": "Neko ya inu ga suki desu.",
+        "espanol": "Me gustan los gatos, perros y otros animales.",
+        "explicacion": "Lista no exhaustiva de animales favoritos"
+      }
+    ]
+  },
+  "も": {
+    "romaji": "mo",
+    "tipo": "Partícula de inclusión",
+    "uso": "Significa 'también', incluye elementos adicionales",
+    "ejemplos": [
+      {
+        "japones": "私も学生です。",
+        "romaji": "Watashi mo gakusei desu.",
+        "espanol": "Yo también soy estudiante.",
+        "explicacion": "Incluye al hablante en el grupo de estudiantes"
+      },
+      {
+        "japones": "何も食べませんでした。",
+        "romaji": "Nani mo tabemasen deshita.",
+        "espanol": "No comí nada.",
+        "explicacion": "Con interrogativos + negativo = 'nada/nadie'"
+      },
+      {
+        "japones": "田中さんも来ました。",
+        "romaji": "Tanaka-san mo kimashita.",
+        "espanol": "Tanaka-san también vino.",
+        "explicacion": "Añade a Tanaka a la lista de personas que vinieron"
+      }
+    ]
+  },
+  "より": {
+    "romaji": "yori",
+    "tipo": "Partícula comparativa",
+    "uso": "Indica el punto de comparación ('más que', 'desde')",
+    "ejemplos": [
+      {
+        "japones": "今日は昨日より暑いです。",
+        "romaji": "Kyou wa kinou yori atsui desu.",
+        "espanol": "Hoy hace más calor que ayer.",
+        "explicacion": "Compara temperatura entre días"
+      },
+      {
+        "japones": "電車よりバスの方が安いです。",
+        "romaji": "Densha yori basu no hou ga yasui desu.",
+        "espanol": "El autobús es más barato que el tren.",
+        "explicacion": "Compara precios de transportes"
+      },
+      {
+        "japones": "私より背が高いです。",
+        "romaji": "Watashi yori se ga takai desu.",
+        "espanol": "Es más alto que yo.",
+        "explicacion": "Compara alturas físicas"
+      }
+    ]
+  },
+  "ほど": {
+    "romaji": "hodo",
+    "tipo": "Partícula de grado/aproximación",
+    "uso": "Indica grado, aproximación ('tanto como', 'aproximadamente')",
+    "ejemplos": [
+      {
+        "japones": "一時間ほど待ちました。",
+        "romaji": "Ichijikan hodo machimashita.",
+        "espanol": "Esperé aproximadamente una hora.",
+        "explicacion": "Indica aproximación de tiempo"
+      },
+      {
+        "japones": "彼ほど上手ではありません。",
+        "romaji": "Kare hodo jouzu dewa arimasen.",
+        "espanol": "No soy tan hábil como él.",
+        "explicacion": "Comparación de grado de habilidad"
+      },
+      {
+        "japones": "10人ほど来ました。",
+        "romaji": "Juunin hodo kimashita.",
+        "espanol": "Vinieron aproximadamente 10 personas.",
+        "explicacion": "Aproximación de cantidad"
+      }
+    ]
+  },
+  "ね": {
+    "romaji": "ne",
+    "tipo": "Partícula final confirmativa",
+    "uso": "Busca confirmación o acuerdo ('¿verdad?', '¿no?')",
+    "ejemplos": [
+      {
+        "japones": "いい天気ですね。",
+        "romaji": "Ii tenki desu ne.",
+        "espanol": "Hace buen tiempo, ¿verdad?",
+        "explicacion": "Busca confirmación del interlocutor"
+      },
+      {
+        "japones": "美味しいですね。",
+        "romaji": "Oishii desu ne.",
+        "espanol": "Está delicioso, ¿no?",
+        "explicacion": "Comparte una opinión y busca acuerdo"
+      },
+      {
+        "japones": "もう帰りますね。",
+        "romaji": "Mou kaerimasu ne.",
+        "espanol": "Ya me voy, ¿vale?",
+        "explicacion": "Informa de una acción buscando comprensión"
+      }
+    ]
+  },
+  "よ": {
+    "romaji": "yo",
+    "tipo": "Partícula final enfática",
+    "uso": "Enfatiza información nueva o importante",
+    "ejemplos": [
+      {
+        "japones": "もう遅いですよ。",
+        "romaji": "Mou osoi desu yo.",
+        "espanol": "Ya es tarde, ¿sabes?",
+        "explicacion": "Enfatiza que es información que el oyente debería saber"
+      },
+      {
+        "japones": "気をつけてくださいよ。",
+        "romaji": "Ki wo tsukete kudasai yo.",
+        "espanol": "Ten cuidado, por favor.",
+        "explicacion": "Enfatiza la importancia del consejo"
+      },
+      {
+        "japones": "本当に美味しいですよ。",
+        "romaji": "Hontou ni oishii desu yo.",
+        "espanol": "Realmente está delicioso, te lo aseguro.",
+        "explicacion": "Enfatiza la veracidad de la afirmación"
+      }
+    ]
+  }
+}
